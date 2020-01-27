@@ -16,8 +16,7 @@ public class TheDirector {
      * @param args the command line arguments
      * @throws java.lang.InterruptedException
      */
-    public static void main(String[] args) throws InterruptedException, IOException, JavaLayerException {
-        cmd();
+    public static void main(String[] args) throws InterruptedException, IOException, JavaLayerException {        
         run();
     }
     
@@ -37,23 +36,7 @@ public class TheDirector {
             System.out.print(c);            
         }                
         System.out.print("\n");
-    }
-    
-    public static void cmd(){
-        try {
-           //Runtime.getRuntime().exec("cmd.exe /c start");            
-           Runtime.getRuntime().exec("cmd.exe /c start java -jar \"theDirector.jar\" "); 
-           new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-           new ProcessBuilder("cmd", "@echo off").inheritIO().start().waitFor();
-           new ProcessBuilder("cmd", "echo abrs").inheritIO().start().waitFor();
-           new ProcessBuilder("cmd", "java -jar", "\"theDirector.jar\"").inheritIO().start().waitFor();
-             
-        } catch (IOException ex) {
-        }catch (InterruptedException ex) {
-                Logger.getLogger(TheDirector.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }
-    
+    }        
     
     public static void msj(String  msg) throws InterruptedException {
         for(char c:msg.toCharArray()){
