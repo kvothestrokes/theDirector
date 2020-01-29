@@ -16,8 +16,7 @@ public class Story {
     private static String inicio;
     private static String nudo;
     private static String fin;
-    private static Random rand = new Random();
-    
+    private static Random rand = new Random();    
     public Story() {
         this.genero =  putGenero();
     }
@@ -26,20 +25,19 @@ public class Story {
         String[] generos = {"Ficcion", "Fantasia" , "Misterio", "Terror", "Romance"};
         int r = rand.nextInt(generos.length);
         switch(generos[r]){
-            case "Ficcion":
+            case "Ficcion":              
                 cmd("title Like a Neutron Star");
                 cmd("color 01");
             break;
-            case "Fantasia":
+            case "Fantasia":              
                 cmd("title Pale Seas");
                 cmd("color 09");
             break;
-            case "Misterio":
+            case "Misterio":                
                 cmd("title Rare Monk");
                 cmd("color 06");
             break;
             case "Terror":
-                cmd("title Don't Look Back");
                 cmd("color 04");
                 break;
             case "Romance":

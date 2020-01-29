@@ -11,6 +11,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
@@ -53,9 +55,10 @@ public class StoryGenerator {
         this.nivelSocial = this.protagonista.getNivelSocial();
     }
     
-    public void runStory() throws IOException, FileNotFoundException, InterruptedException, JavaLayerException{
+    public void runStory() throws IOException, FileNotFoundException, InterruptedException, JavaLayerException{                
         readtxt("init"+guion.getGenero()+".txt");     //mainscreen           
         printChara();
+        animation1();
     }
             
     public static void printChara() throws InterruptedException, IOException, FileNotFoundException, JavaLayerException{
@@ -80,16 +83,51 @@ public class StoryGenerator {
     }
     
     public static void readtxt(String ruta) throws FileNotFoundException, IOException, InterruptedException{
+        Thread init = new Subproceso(guion.getGenero()+".mp3");
+        init.start();
         File archivo = new File("media"+File.separator+ruta);
         FileReader bf = new FileReader(archivo);
         BufferedReader b = new BufferedReader(bf);
         String cadena = "";
         while((cadena = b.readLine())!= null){
             msj(cadena,7);
-        }        
-        msj("Presione enter para comenzar...",40);        
+        }                
+        msj("Presione enter para comenzar...",40);                
         enter();
+        Subproceso.stap();
         cls();
+    }
+    
+    public static void frame(String file) throws FileNotFoundException{        
+            File frame = new File("media"+File.separator+file+".txt");
+            FileReader fr = new FileReader(frame);
+            BufferedReader b = new BufferedReader(fr); 
+            String linea = "";
+            try{
+                while((linea=b.readLine())!=null){
+                    System.out.println(linea);
+                }
+                Thread.sleep(200);
+                cls();
+            }catch(Exception e){
+                System.out.println(e);
+            }                                                                
+    }
+    
+    public static void animation1(){
+        try {
+            frame("1");
+            frame("2");
+            frame("3");
+            frame("4");
+            frame("5");
+            frame("6");
+            frame("7");
+            frame("8");
+            animation1();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(StoryGenerator.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public static void enter() throws IOException{

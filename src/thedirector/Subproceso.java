@@ -18,13 +18,14 @@ import javazoom.jl.player.Player;
  */
 public class Subproceso extends Thread{
     String fx;
+    static Player apl;
 
     public Subproceso(String fx) {
         this.fx = fx;
     }
     
     public void run(){
-        Player apl;
+        
         try {
             apl = new Player(new FileInputStream("media/"+fx));
             apl.play();
@@ -33,6 +34,10 @@ public class Subproceso extends Thread{
         } catch (JavaLayerException ex) {
             Logger.getLogger(Subproceso.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public static void stap(){
+        apl.close();
     }
     
 }

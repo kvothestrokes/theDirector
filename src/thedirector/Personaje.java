@@ -16,7 +16,7 @@ import java.util.Random;
  *
  * @author 80043
  */
-public class Personaje {
+public class Personaje  {
     private String genero;
     private String nombre;
     private String personalidad;
