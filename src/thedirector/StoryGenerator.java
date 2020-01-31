@@ -35,8 +35,7 @@ public class StoryGenerator {
     private static String estadoCivil;
     private static String habilidad;
     private static String nivelSocial;
-    private static Story guion = new Story();
-    
+    private static Story guion = new Story();    
     
     public StoryGenerator(Personaje prota) throws IOException {
         this.protagonista = prota;
@@ -57,8 +56,10 @@ public class StoryGenerator {
     
     public void runStory() throws IOException, FileNotFoundException, InterruptedException, JavaLayerException{                
         readtxt("init"+guion.getGenero()+".txt");     //mainscreen           
-        printChara();
-        animation1();
+        printChara();           
+        cls();        
+        animate();
+        
     }
             
     public static void printChara() throws InterruptedException, IOException, FileNotFoundException, JavaLayerException{
@@ -98,8 +99,21 @@ public class StoryGenerator {
         cls();
     }
     
+    public static void animate() throws IOException{
+        String filedir = guion.getGenero();
+        try{
+            for(int i=1; i<=8;i++){
+                frame(filedir+File.separator+i);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        enter();
+        cls();
+    }
+    
     public static void frame(String file) throws FileNotFoundException{        
-            File frame = new File("media"+File.separator+file+".txt");
+            File frame = new File("media"+File.separator+"anim"+File.separator+file+".txt");
             FileReader fr = new FileReader(frame);
             BufferedReader b = new BufferedReader(fr); 
             String linea = "";
@@ -113,22 +127,7 @@ public class StoryGenerator {
                 System.out.println(e);
             }                                                                
     }
-    
-    public static void animation1(){
-        try {
-            frame("1");
-            frame("2");
-            frame("3");
-            frame("4");
-            frame("5");
-            frame("6");
-            frame("7");
-            frame("8");
-            animation1();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(StoryGenerator.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+      
     
     public static void enter() throws IOException{
         System.in.read();  
