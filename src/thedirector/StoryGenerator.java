@@ -35,7 +35,8 @@ public class StoryGenerator {
     private static String estadoCivil;
     private static String habilidad;
     private static String nivelSocial;
-    private static Story guion = new Story();    
+    private static Story guion = new Story(); 
+    private static Scene escena1 = new Scene("scene1", "Satelite Europa", "...");
     
     public StoryGenerator(Personaje prota) throws IOException {
         this.protagonista = prota;
@@ -57,8 +58,14 @@ public class StoryGenerator {
     public void runStory() throws IOException, FileNotFoundException, InterruptedException, JavaLayerException{                
         readtxt("init"+guion.getGenero()+".txt");     //mainscreen           
         printChara();           
-        cls();        
-        animate();
+        cls();    
+        escena1.play();
+        enter();
+        escena1.text("La minería espacial estallo xxxxxxxx");
+        enter();
+        escena1.desicion("No hay pan de molde", "comprar", "quejarme como feminista");
+        //animate();
+        
         
     }
             

@@ -113,8 +113,7 @@ public class Personaje  {
     }
     
     private String setNombre() throws FileNotFoundException, IOException {
-        int r= rand.nextInt(21);
-        //System.out.println("> "+ r);
+        int r= rand.nextInt(21);        
         String genero;
         if(this.genero.equals("hombre")){
             genero = "hombres";           
