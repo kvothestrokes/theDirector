@@ -35,8 +35,8 @@ public class StoryGenerator {
     private static String estadoCivil;
     private static String habilidad;
     private static String nivelSocial;
-    private static Story guion = new Story(); 
-    private static Scene escena1 = new Scene("scene1", "Satelite Europa", "...");
+    private static Story guion;
+    private static Scene escena1;
     
     public StoryGenerator(Personaje prota) throws IOException {
         this.protagonista = prota;
@@ -56,18 +56,15 @@ public class StoryGenerator {
     }
     
     public void runStory() throws IOException, FileNotFoundException, InterruptedException, JavaLayerException{                
+        guion = new Story(); 
+        escena1 = guion.getScene();
         readtxt("init"+guion.getGenero()+".txt");     //mainscreen           
         printChara();           
         cls();    
-        escena1.play();
-        enter();
-        escena1.text("La minería espacial estallo xxxxxxxx");
-        enter();
-        escena1.desicion("No hay pan de molde", "comprar", "quejarme como feminista");
-        //animate();
         
         
-    }
+        
+    }  
             
     public static void printChara() throws InterruptedException, IOException, FileNotFoundException, JavaLayerException{
         Thread  sonidos = new Subproceso("typewriter.mp3");
@@ -84,7 +81,7 @@ public class StoryGenerator {
         msj("Trabaja como "+ ocupacion);
         msj("Pasa su tiempo libre en "+ pasatiempo);
         msj("Su estado civil "+ estadoCivil);
-        msj("Y es de clase "+ nivelSocial);
+        //msj("Y es de clase "+ nivelSocial);
         msj("Presione enter para comenzar...",40);        
         enter();
         cls();
@@ -159,7 +156,7 @@ public class StoryGenerator {
     
     public static void msj(String  msg) throws InterruptedException {
         for(char c:msg.toCharArray()){
-            Thread.sleep(30);
+            Thread.sleep(20);
             System.out.print(c);            
         }                
         System.out.print("\n");

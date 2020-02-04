@@ -65,8 +65,7 @@ public class Scene {
         return desicion;        
     }
     
-    public static void readtxt(String ruta){        
-        System.out.println("redtest");
+    public static void readtxt(String ruta){                
        try{
             File archivo = new File("media"+File.separator+ruta+".txt");
             FileReader bf = new FileReader(archivo);
