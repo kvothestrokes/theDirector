@@ -35,8 +35,8 @@ public class StoryGenerator {
     private static String estadoCivil;
     private static String habilidad;
     private static String nivelSocial;
-    private static Story guion;
-    private static Scene escena1;
+    private static Story guion;    
+    private static Machina DeusEx;
     
     public StoryGenerator(Personaje prota) throws IOException {
         this.protagonista = prota;
@@ -56,20 +56,23 @@ public class StoryGenerator {
     }
     
     public void runStory() throws IOException, FileNotFoundException, InterruptedException, JavaLayerException{                
-        guion = new Story(); 
-        escena1 = guion.getScene();
+        guion = new Story();         
         readtxt("init"+guion.getGenero()+".txt");     //mainscreen           
-        printChara();           
-        cls();    
-        
-        
+        printChara();
+        try{
+            System.out.println("ERROR PENDEJO");
+            DeusEx.ToStory(guion.getGenero());
+        }catch(Exception e){
+            System.out.println(">"+e);
+        }
+        cls();                    
         
     }  
             
     public static void printChara() throws InterruptedException, IOException, FileNotFoundException, JavaLayerException{
         Thread  sonidos = new Subproceso("typewriter.mp3");
         sonidos.start();
-        msj("Este es tu personaje:",10);             
+        msj("Este es tu personaje:",30);             
         msj("Su nombre es " + nombre);
         msj("Obviamente es un/una "+ genero);
         msj("Tiene una personalidad "+ personalidad);
@@ -82,7 +85,7 @@ public class StoryGenerator {
         msj("Pasa su tiempo libre en "+ pasatiempo);
         msj("Su estado civil "+ estadoCivil);
         //msj("Y es de clase "+ nivelSocial);
-        msj("Presione enter para comenzar...",40);        
+        msj("Presione enter para comenzar...",10);        
         enter();
         cls();
     }
@@ -156,7 +159,7 @@ public class StoryGenerator {
     
     public static void msj(String  msg) throws InterruptedException {
         for(char c:msg.toCharArray()){
-            Thread.sleep(20);
+            Thread.sleep(33);
             System.out.print(c);            
         }                
         System.out.print("\n");
