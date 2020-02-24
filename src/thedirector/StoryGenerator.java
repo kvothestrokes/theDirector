@@ -36,7 +36,7 @@ public class StoryGenerator {
     private static String habilidad;
     private static String nivelSocial;
     private static Story guion;    
-    private static Machina DeusEx;
+    private static Machina DeusEx = new Machina();
     
     public StoryGenerator(Personaje prota) throws IOException {
         this.protagonista = prota;
@@ -58,13 +58,8 @@ public class StoryGenerator {
     public void runStory() throws IOException, FileNotFoundException, InterruptedException, JavaLayerException{                
         guion = new Story();         
         readtxt("init"+guion.getGenero()+".txt");     //mainscreen           
-        printChara();
-        try{
-            System.out.println("ERROR PENDEJO");
-            DeusEx.ToStory(guion.getGenero());
-        }catch(Exception e){
-            System.out.println(">"+e);
-        }
+        printChara();                  
+        DeusEx.ToStory(guion.getGenero());        
         cls();                    
         
     }  
@@ -158,12 +153,51 @@ public class StoryGenerator {
     }         
     
     public static void msj(String  msg) throws InterruptedException {
-        for(char c:msg.toCharArray()){
-            Thread.sleep(33);
-            System.out.print(c);            
+        int chara=0;
+        for(char c:msg.toCharArray()){  
+           /* switch(c){
+                case 'á':
+                    System.out.print('á');
+                    break;
+                case 'é':
+                    System.out.print('é');
+                    break;
+                case 'í':
+                    System.out.print('í');
+                    break;
+                case 'ó':
+                    System.out.print('ó');
+                    break;
+                case 'ú':
+                    System.out.print('ú');
+                    break;
+                case 'ñ':
+                    System.out.print('ñ');
+                case'¿':
+                    System.out.print('¿');
+                    break;
+                default:
+                    System.out.print(c);  
+                    
+            }*/
+            if(chara==80){
+                if(c == ' ' || c==','){
+                    System.out.print("\n");
+                    System.out.print("\t>");
+                    chara=0;
+                }else{
+                    System.out.print("-");
+                    System.out.print("\n");
+                    System.out.print("\t>");                                        
+                    chara=0;
+                }
+            }
+            Thread.sleep(33);  
+            System.out.print(c);  
+            chara++;
         }                
         System.out.print("\n");
-    }    
+    }  
         
 }
     

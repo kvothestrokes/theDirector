@@ -36,33 +36,45 @@ public class Scene {
         System.out.println("========================================================================================");
         System.out.print(" \t>");
     }
-    public void play() throws InterruptedException{
+    public void play() throws InterruptedException, IOException{
         cls();
         put();
-        msj(desc);        
+        msj(desc);      
+        enter();
     }
     
-    public void text(String texto) throws InterruptedException{
+    public void text(String texto) throws InterruptedException, IOException{
         cls();
         put();
-        msj(texto);                
+        msj(texto);     
+        enter();
     }
     
-    public int desicion(String dilema,String opt1, String opt2 ) throws InterruptedException{
-        int  desicion = 0;
-        Scanner d = new Scanner(System.in);
+    public int desicion(String dilema,String opt1, String opt2 ) throws InterruptedException, IOException{
+        int  desicion = 0;        
         
         do{
+            Scanner d = new Scanner(System.in);
             cls();
             text(dilema);
-            msj("¿Que deseas hacer?");
+            msj("¿Qué deseas hacer?");
             msj("1> " +opt1+" 2> "+opt2);
             System.out.print("Decide> ");
-            desicion = d.nextInt();
+            try{                                
+                desicion = d.nextInt();
+            }catch(Exception e){
+                System.out.println("Elige escibriendo 1 o 2");
+                
+            }
                         
         }while(desicion!=1 && desicion!=2);
         
         return desicion;        
+    }
+    
+    public static void enter() throws IOException{
+        System.in.read();
+        System.in.read();
     }
     
     public static void readtxt(String ruta){                
